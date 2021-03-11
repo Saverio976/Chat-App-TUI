@@ -57,6 +57,9 @@ la première fois que vous allez la lancer, on va vous demander un pseudo
 
 Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un message
 
+# To Read
+la commande set_cipher n'est pas disponible pour un temps indeterminé
+
 ## TODO
 
 *lisez le fichier assets/doc/TODO.md pour voir la liste des choses à ameliorer*

@@ -60,6 +60,9 @@ The first time you will run this app-like, it will ask you a pseudo
 
 This pseudo will be print to all present people on a channel when you will send a message
 
+# To Read
+the commands set_cipher will be not alowed for an indeterminate time
+
 ## TODO
 
 *read the assets/doc/TODO.md file for todo to do*
