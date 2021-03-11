@@ -24,7 +24,7 @@ def initPubNub(stdscr):
         while len(pseudo) < 2:
             stdscr.addstr(0,0, "pseudo :")
             stdscr.refresh()
-            editwin = curses.newwin(1,min(10, curses.COLS-1),1,1) # pylint: disable=no-member
+            editwin = curses.newwin(1,min(16, curses.COLS-1),1,1) # pylint: disable=no-member
             editwin.keypad(True)
             box = Textbox(editwin)
             box.edit()
