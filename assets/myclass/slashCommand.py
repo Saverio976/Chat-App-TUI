@@ -8,13 +8,18 @@ class SlashCommand:
             "help" : ["help" ,self.help, "affiche les commandes disponibles + descriptions"],
             "fin" : ["fin", self.fin, "ferme la session et se deconnecte"],
             "here" : ["join", self.here, "envoi un message prévenant votre présence"],
-            "set_cipher" : ["set_cipher <key>", self.set_cipher, "rajouter un chifrement gràce à cette clefs"],
-            "ping" : ["ping <message>", self.ping, "envoi le message avec la couleur jaune"],
-            "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"]
+            #"set_cipher" : ["set_cipher <key>", self.set_cipher, "rajouter un chifrement gràce à cette clefs"],
+            "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
+            "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
+            "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
+            "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"]
         }
 
     def run_command(self, command, arg):
-        trigger_command = self._command.get(command)[1]
+        if command not in self._command.keys():
+            self._writeMessage.write_system_message("cette commande n'existe pas")
+            return self.run_command("help", "")
+        trigger_command = self._command[command][1]
         if trigger_command == None:
             return True
         return trigger_command(arg)
@@ -35,6 +40,7 @@ class SlashCommand:
         list_send = [msg1, msg2, msg3, msg4]
         for value in self._command.values():
             list_send.append(f"{value[0]} || {value[2]}")
+        self._writeMessage._y = self._writeMessage._counter
         for x in list_send:
             self._writeMessage.write_system_message(x)
         return True
@@ -64,18 +70,18 @@ class SlashCommand:
         self._o_pubnub.publish().channel("général").message("/here").sync()
         return True
 
-    def set_cipher(self, arg):
-        """
-        goal :
-            set a cipher key to encrypt message and let other personn don't understand
-        arg :
-            arg : arg : the cypher key
-        return 
-            True # stay_connected will stay True
-        """
-        self._o_pubnub.config.cipher_key = arg
-        self._writeMessage.write_system_message("cipher key modified/created")
-        return True
+    #def set_cipher(self, arg):
+    #    """
+    #    goal :
+    #        set a cipher key to encrypt message and let other personn don't understand
+    #    arg :
+    #        arg : arg : the cypher key
+    #    return 
+    #        True # stay_connected will stay True
+    #    """
+    #    self._o_pubnub.config.cipher_key = arg
+    #    self._writeMessage.write_system_message("cipher key modified/created")
+    #    return True
     
     def ping(self, arg):
         """
@@ -112,4 +118,39 @@ class SlashCommand:
             .include_uuids(True)\
             .pn_async(here_now_callback)
         
+        msg = "[+inspect+]"
+        self._o_pubnub.publish().channel("général").message(msg).sync()
+
+        return True
+
+    def upPad(self, arg):
+        """
+        goal :
+            scroll to the top of the message history
+        arg :
+            arg : nb line to go up [if no, = 1]
+        return :
+            True # stay_connected will stay True
+        """
+        if arg.isdigit():
+            arg = int(arg)
+        else:
+            arg = 1
+        self._writeMessage.PadUP(arg)
+        return True
+
+    def downPad(self, arg):
+        """
+        goal :
+            scroll to the bottom of the message history
+        arg :
+            arg : nb line to go down [if no, = 1]
+        return :
+            True # stay_connected will stay True
+        """
+        if arg.isdigit():
+            arg = int(arg)
+        else:
+            arg = 1
+        self._writeMessage.PadDOWN(arg)
         return True
