@@ -40,7 +40,7 @@ def main(stdscr):
     stdscr.refresh()
 
     # send welcome start up message
-    writemessage.write_start_up_message(o_pubnub.uuid[:-10])
+    writemessage.write_start_up_message(f"{o_pubnub.uuid[:-10]}#{o_pubnub.uuid[-10:]}")
 
     commandSlash_handler = SlashCommand(writemessage, o_pubnub)
 

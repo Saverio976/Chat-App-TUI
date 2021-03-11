@@ -10,12 +10,12 @@ class MessageListener(SubscribeCallback):
         #    return None
 
         content = msg.message
-        author = msg.publisher[:-10]
+        author = f"{msg.publisher[:-10]}#{msg.publisher[-10:]}"
 
         if content == "/fin":
             self._writeMessage.write_system_message(f"{author} a quitté le channel")
             return None
-        if content == "/join":
+        if content == "/here":
             self._writeMessage.write_system_message(f"{author} est dans le channel")
             return None
         if content.startswith("/ping "):
