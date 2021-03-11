@@ -18,6 +18,8 @@ from assets.myclass.slashCommand import SlashCommand
 from assets.myfunc.initPubNub import initPubNub
 from assets.myclass.messageListener import MessageListener
 from assets.myclass.presenceListener import PresenceListener
+# sanitize string to publish
+from assets.myfunc.sanitizeStr import sanitizeStr
 
 # load env variable
 load_dotenv()
@@ -67,6 +69,7 @@ def main(stdscr):
             arg = " ".join(message.split()[1:]) # we remove the "/" + command
             stay_connected = commandSlash_handler.run_command(command, arg)
         else:
+            message = sanitizeStr(message)
             o_pubnub.publish().channel("général").message(message).sync()
         editwin.erase()
     tsleep(1)
