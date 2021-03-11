@@ -11,6 +11,7 @@ from random import randint
 # PubNub
 from pubnub.pubnub import PubNub
 from pubnub.pnconfiguration import PNConfiguration
+from pubnub.enums import PNReconnectionPolicy
 
 def initPubNub(stdscr):
     """
@@ -40,5 +41,7 @@ def initPubNub(stdscr):
     pnconfig.ssl = True
     pnconfig.cipher_key = os.getenv("CYPHER_KEY")
     pnconfig.uuid = pseudo
+    pnconfig.reconnect_policy = PNReconnectionPolicy.EXPONENTIAL
+    pnconfig.connect_timeout = 30
 
     return PubNub(pnconfig)
