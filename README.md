@@ -71,6 +71,10 @@ the commands set_cipher will be not alowed for an indeterminate time
 
 [![first-beta-testor](https://img.shields.io/badge/First%20Beta%20Testor-Quentin-red)](https://instagram.com/chaque_64?igshid=p6k5bmwvknk)
 
+[![second-beta-testor](https://img.shields.io/badge/Second%20Beta%20Testor-Luciolle24-blue)](https://github.com/luciolle24)
+
+[![third-beta-testor](https://img.shields.io/badge/Second%20Beta%20Testor-DreamFail-blue)](https://github.com/DreamFail)
+
 ## Contact
 
 [![paradox-contact](https://img.shields.io/badge/Saverio-personnex976%40gmail.com-blue)](mailto:personnex976%40gmail.com)
