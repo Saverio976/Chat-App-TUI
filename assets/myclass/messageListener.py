@@ -18,6 +18,9 @@ class MessageListener(SubscribeCallback):
         if content == "/here":
             self._writeMessage.write_system_message(f"{author} est dans le channel")
             return None
+        if content == "[+inspect+]":
+            self._writeMessage.write_signal_message(author, "FAIT SON INSPECTEUR")
+            return None
         if content.startswith("/ping "):
             self._writeMessage.write_ping_message(author, content[6:])
             return None
