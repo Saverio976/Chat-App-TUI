@@ -17,10 +17,10 @@ fi
 if [[ $python_exec != "0" ]]; then
     echo "install all required library"
     $python_exec -m pip install --upgrade pip &>/dev/null
-    $python_exec -m pip install -r assets/requirements/lin.txt --exists-action i &> /dev/null
+    $python_exec -m pip install -r assets/requirements/lin.txt &>/dev/null
     echo "chat app will start in few seconds"
     $python_exec main.py
-    echo "good by"
+    echo "good bye"
 else
     echo "did you have python ?"
 fi
