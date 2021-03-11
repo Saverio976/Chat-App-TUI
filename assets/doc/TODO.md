@@ -2,7 +2,8 @@
 
 ### more commands
 - [x] who_here
-- [] command to scroll up and down the pad
+- [x] command to scroll up and down the pad
+- [] ...
 
 ### responsive screen
 - [x] responsive startup terminal app
