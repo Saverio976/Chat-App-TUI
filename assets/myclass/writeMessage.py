@@ -127,10 +127,10 @@ class WriteMessage:
         self.pad_refresh()
 
     def pad_refresh(self):
-        if self._counter <= self._lry - self._uly:
+        if self._counter <= self._lry - self._uly -1:
             self._pad.refresh(0,0, self._uly,self._ulx, self._lry, self._lrx)
         else:
-            pos_y = self._counter - self._lry - self._uly
+            pos_y = self._counter - self._lry - self._uly + 1
             self._pad.refresh(pos_y, 0, self._uly,self._ulx, self._lry, self._lrx)
 
     def add_to_history(self, data):
