@@ -31,7 +31,7 @@ def main(stdscr):
     lry = pad_localisation[2]; lrx = pad_localisation[3]
     writemessage = WriteMessage(n_line, n_col, uly, ulx, lry, lrx)
 
-    o_pubnub = initPubNub()
+    o_pubnub = initPubNub(stdscr)
     o_pubnub.add_listener(MessageListener(writemessage))
     o_pubnub.add_listener(PresenceListener(writemessage))
     o_pubnub.subscribe().channels("général").with_presence().execute()
