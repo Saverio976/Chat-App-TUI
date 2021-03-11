@@ -4,7 +4,7 @@
 
 a personal terminal chat app to improve python skill
 
-[![chat-app-TUI](https://github.com/Saverio976/Chat-App-TUI/tree/main/assets/doc/chat_app_tui.png)](https://github.com/Saverio976/Chat-App-TUI/tree/main/assets/doc/chat_app_tui.png)
+![chat-app-TUI](/assets/doc/chat_app_tui.png "chat-app-TUI")
 
 ## How to start
 
