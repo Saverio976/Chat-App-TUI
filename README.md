@@ -29,6 +29,10 @@ python main.py
 
 ### on Unix
 
+two option
+
+1)
+run directly the shell script
 on a terminal, first time make the shell script executable
 ```shell
 chmod u+x ./run.sh
@@ -36,6 +40,16 @@ chmod u+x ./run.sh
 and after simply run
 ```shell
 ./run.sh
+```
+
+2)
+or install all required library (change 'python' with your python 3 command [like : python3, py3])
+```shell
+python -m pip install -r assets/requirements/lin.txt --exists-action i
+```
+and run the python
+```shell
+python main.py
 ```
 
 ## Chat App
