@@ -2,69 +2,66 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
-a personal terminal chat app to improve my python skill
+une app de tchat à but "personnel" réalisée pour m'améliorer en python
 
 ![chat-app-TUI](/assets/doc/chat_app_tui.png "chat-app-TUI")
 
-## How to start
+## Comment la lancer
 
-*to see the french version of this README go to assets/doc/README-FR.md*
-
-### on Windows
-Go to the project directory and type "cmd" in the adress bar and hit enter
-two options
+### sur Windows
+allez dans le dossier téléchargé et ecrivez "cmd" dans la barre d'adresse puis appuyez sur entrer
+deux options
 
 1)
-Write this line
+ecrivez
 ```shell
 run.bat
 ```
-and hit enter
+et appuyez sur entrer
 
 2)
-write and hit enter this lines one by one:
+ecrivez une par une ces lignes
 ```shell
 python -m pip install -U pip
 python -m pip install -r assets/requirements/win.txt --exists-action i
 python main.py
 ```
 
-### on Unix
+### sur Unix
 
-two option
+deux options
 
 1)
-run directly the shell script
-on a terminal, first time make the shell script executable
+dans un terminal, la première, fois rendez le .sh executable
 ```shell
 chmod u+x ./run.sh
 ```
-and after simply run
+et après vous n'aurez qu'à ecrire
 ```shell
 ./run.sh
 ```
 
 2)
-or install all required library (change 'python' with your python 3 command [like : python3, py3])
-```shell
+ou installez toutes les bibliothèques nécessaires
+``shell
 python -m pip install -r assets/requirements/lin.txt --exists-action i
 ```
-and run the python
+puis lancez le fichier python
 ```shell
 python main.py
 ```
 
 ## Chat App
 
-The first time you will run this app-like, it will ask you a pseudo
+la première fois que vous allez la lancer, on va vous demander un pseudo
 
-This pseudo will be print to all present people on a channel when you will send a message
+Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un message
 
 ## TODO
 
-*read the assets/doc/TODO.md file for todo to do*
+*lisez le fichier assets/doc/TODO.md pour voir la liste des choses à ameliorer*
 
-## Thanks
+## Merci à
 
 [![first-beta-testor](https://img.shields.io/badge/First%20Beta%20Testor-Quentin-red)](https://instagram.com/chaque_64?igshid=p6k5bmwvknk)
 
