@@ -6,6 +6,16 @@ a personal terminal chat app to improve my python skill
 
 ![chat-app-TUI](/assets/doc/img/chat_app_tui.png "chat-app-TUI")
 
+## download this chat app
+
+1) on terminal/cmd
+```shell
+git clone https://github.com/Saverio976/Chat-App-TUI.git
+```
+
+2) on a browser
+![downloadzip](/assets/doc/img/downloadzip.png "downloadzip")
+
 ## How to start
 
 *to see the french version of this README go to assets/doc/README-FR.md*
@@ -29,6 +39,13 @@ This pseudo will be print to all present people on a channel when you will send 
 
 # To Read
 the commands set_cipher will be not alowed for an indeterminate time
+
+## when you want the new version without doing some stuf
+
+on the project path open a [terminal/ command prompt]
+```shell
+python settings/update.py
+```
 
 ## TODO
 

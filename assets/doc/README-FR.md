@@ -6,6 +6,16 @@ une app de tchat à but "personnel" réalisée pour m'améliorer en python
 
 ![chat-app-TUI](/assets/doc/img/chat_app_tui.png "chat-app-TUI")
 
+## téléchargement
+
+1) dans un terminal/cmd
+```shell
+git clone https://github.com/Saverio976/Chat-App-TUI.git
+```
+
+2) avec un navigateur internet
+![downloadzip](/assets/doc/img/downloadzip.png "downloadzip")
+
 ## Comment la lancer
 
 *pour voir la version anglaise allez à la racine de ce projet et lisez README.md*
@@ -29,6 +39,13 @@ Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un mes
 
 # To Read
 la commande set_cipher n'est pas disponible pour un temps indeterminé
+
+## quand vous voulez avoir la nouvelle version sans faire beaucoup de mouvement
+
+dans le dossier ouvrez [un terminal/ une invite de commande]
+```shell
+python settings/update.py
+```
 
 ## TODO
 
