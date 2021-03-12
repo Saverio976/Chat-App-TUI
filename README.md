@@ -4,52 +4,19 @@
 
 a personal terminal chat app to improve my python skill
 
-![chat-app-TUI](/assets/doc/chat_app_tui.png "chat-app-TUI")
+![chat-app-TUI](/assets/doc/img/chat_app_tui.png "chat-app-TUI")
 
 ## How to start
 
 *to see the french version of this README go to assets/doc/README-FR.md*
 
-### on Windows
-Go to the project directory and type "cmd" in the adress bar and hit enter
-two options
-
-1)
-Write this line
+open a [terminal / command prompt] on this project path (if you want a tuto for that, go to assets/doc/open_cmd.md)
+and install all required library
 ```shell
-run.bat
-```
-and hit enter
-
-2)
-write and hit enter this lines one by one:
-```shell
-python -m pip install -U pip
-python -m pip install -r assets/requirements/win.txt --exists-action i
-python main.py
+python setup.py
 ```
 
-### on Unix
-
-two option
-
-1)
-run directly the shell script
-on a terminal, first time make the shell script executable
-```shell
-chmod u+x ./run.sh
-```
-and after simply run
-```shell
-./run.sh
-```
-
-2)
-or install all required library (change 'python' with your python 3 command [like : python3, py3])
-```shell
-python -m pip install -r assets/requirements/lin.txt --exists-action i
-```
-and run the python
+now you can basicaly run
 ```shell
 python main.py
 ```

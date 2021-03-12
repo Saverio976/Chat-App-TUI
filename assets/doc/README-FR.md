@@ -4,49 +4,19 @@
 
 une app de tchat à but "personnel" réalisée pour m'améliorer en python
 
-![chat-app-TUI](/assets/doc/chat_app_tui.png "chat-app-TUI")
+![chat-app-TUI](/assets/doc/img/chat_app_tui.png "chat-app-TUI")
 
 ## Comment la lancer
 
-### sur Windows
-allez dans le dossier téléchargé et ecrivez "cmd" dans la barre d'adresse puis appuyez sur entrer
-deux options
+*pour voir la version anglaise allez à la racine de ce projet et lisez README.md*
 
-1)
-ecrivez
+ouvrez [un terminal / une invite de commande] dans le projet (si vous voulez un tuto pour ça, allez dans assets/doc/open_cmd.md)
+et installez toutes les biobliothèques nécessaires
 ```shell
-run.bat
-```
-et appuyez sur entrer
-
-2)
-ecrivez une par une ces lignes
-```shell
-python -m pip install -U pip
-python -m pip install -r assets/requirements/win.txt --exists-action i
-python main.py
+python setup.py
 ```
 
-### sur Unix
-
-deux options
-
-1)
-dans un terminal, la première, fois rendez le .sh executable
-```shell
-chmod u+x ./run.sh
-```
-et après vous n'aurez qu'à ecrire
-```shell
-./run.sh
-```
-
-2)
-ou installez toutes les bibliothèques nécessaires
-``shell
-python -m pip install -r assets/requirements/lin.txt --exists-action i
-```
-puis lancez le fichier python
+maintenant vous pouvez simplement faire
 ```shell
 python main.py
 ```
