@@ -13,7 +13,7 @@ une app de tchat à but "personnel" réalisée pour m'améliorer en python
 ouvrez [un terminal / une invite de commande] dans le projet (si vous voulez un tuto pour ça, allez dans assets/doc/open_cmd.md)
 et installez toutes les biobliothèques nécessaires
 ```shell
-python setup.py
+python settings/setup.py
 ```
 
 maintenant vous pouvez simplement faire

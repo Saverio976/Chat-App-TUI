@@ -13,7 +13,7 @@ a personal terminal chat app to improve my python skill
 open a [terminal / command prompt] on this project path (if you want a tuto for that, go to assets/doc/open_cmd.md)
 and install all required library
 ```shell
-python setup.py
+python settings/setup.py
 ```
 
 now you can basicaly run
