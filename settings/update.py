@@ -12,7 +12,7 @@ def update():
     """
     repository_download = "https://api.github.com/repos/Saverio976/Chat-App-TUI/zipball/main"
     name = "Chat-App-TUI-main.zip"
-    r = requests.get(repository_download).raw
+    r = requests.get(repository_download, stream=True)
     with open(name, "wb") as fd:
         for chunk in r.iter_content(chunk_size=128):
             fd.write(chunk)
@@ -20,3 +20,6 @@ def update():
 
     print("Up To Date")
     sys.exit()
+
+if __name__ == "__main__":
+    update()
