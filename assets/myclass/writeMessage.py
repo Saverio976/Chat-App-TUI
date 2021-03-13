@@ -21,17 +21,17 @@ class WriteMessage:
         self._lrx = lrx
         self._history = []
         curses.start_color()
-        if curses.has_colors():
+        if curses.has_colors(): # pylint: disable=no-member
             self._curses_color = True
-            curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
-            curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
-            curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
+            curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK) # pylint: disable=no-member
+            curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK) # pylint: disable=no-member
+            curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK) # pylint: disable=no-member
         else:
             self._curses_color = False
         self.re_init()
 
     def re_init(self):
-        self._pad = curses.newpad(self._max_line, self._n_col)
+        self._pad = curses.newpad(self._max_line, self._n_col) # pylint: disable=no-member
         self._pad.keypad(True)
         self._pad.refresh(0,0, self._uly,self._ulx, self._lry, self._lrx)
         self._counter = 0
@@ -78,7 +78,7 @@ class WriteMessage:
         list_message = self.split_large_text(f"!!--> {author} : {message}")
         for msg in list_message:
             if self._curses_color:
-                self._pad.addstr(self._counter,0, msg, curses.color_pair(2))
+                self._pad.addstr(self._counter,0, msg, curses.color_pair(2)) # pylint: disable=no-member
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
@@ -102,7 +102,7 @@ class WriteMessage:
         list_message = self.split_large_text(data)
         for msg in list_message:
             if self._curses_color:
-                self._pad.addstr(self._counter,0, msg, curses.color_pair(1))
+                self._pad.addstr(self._counter,0, msg, curses.color_pair(1)) # pylint: disable=no-member
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
@@ -127,7 +127,7 @@ class WriteMessage:
         list_message = self.split_large_text(message)
         for msg in list_message:
             if self._curses_color:
-                self._pad.addstr(self._counter,0, msg, curses.color_pair(3))
+                self._pad.addstr(self._counter,0, msg, curses.color_pair(3)) # pylint: disable=no-member
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
@@ -148,7 +148,7 @@ class WriteMessage:
         self.write_system_message("Connection réalisée avec succès")
         self.write_system_message("Voici ton pseudo : ")
         if self._curses_color:
-            self._pad.addstr(1,19, pseudo, curses.color_pair(2))
+            self._pad.addstr(1,19, pseudo, curses.color_pair(2)) # pylint: disable=no-member
         else:
             self._pad.addstr(1,19, pseudo)
         self.write_system_message("Voir les différentes commandes possibles : /help")
@@ -165,9 +165,10 @@ class WriteMessage:
         return :
             None
         """
-        self._y -= nb
-        if self._y < 0:
-            self._y = 0
+        if self._y - nb <= 0:
+            self._y = (self._lry - self._uly) + 2
+        else:
+            self._y -= nb
         self.pad_refresh()
 
     def PadDOWN(self, nb):
@@ -179,9 +180,10 @@ class WriteMessage:
         return :
             None
         """
-        self._y += nb
-        if self._y > self._counter:
+        if self._y + nb >= self._counter:
             self._y = self._counter
+        else:
+            self._y += nb
         self.pad_refresh()
 
     def pad_refresh(self):
@@ -192,11 +194,11 @@ class WriteMessage:
         return :
             None
         """
-        if self._counter <= self._lry - self._uly -1:
-            self._pad.refresh(0,0, self._uly,self._ulx, self._lry, self._lrx)
+        if self._y <= (self._lry - self._uly) - 1:
+            self._pad.refresh(0,0, self._uly,self._ulx, self._lry,self._lrx)
         else:
-            pos_y = self._y - self._lry - self._uly + 1
-            self._pad.refresh(pos_y, 0, self._uly,self._ulx, self._lry, self._lrx)
+            pos_y = self._y - (self._lry - self._uly) + 1
+            self._pad.refresh(pos_y,0, self._uly,self._ulx, self._lry,self._lrx)
 
     def add_to_history(self, data):
         """
