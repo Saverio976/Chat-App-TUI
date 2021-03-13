@@ -31,7 +31,7 @@ def initPubNub(stdscr):
             box.edit()
             pseudo = " ".join(box.gather().split())
         pseudo += "".join([str(randint(0,9)) for x in range(10)])
-        with open(".env", "a") as file:
+        with open("assets/doc/data/.env", "a") as file:
             file.write(f"\nPSEUDO=\"{pseudo}\"")
         editwin.erase()
 
