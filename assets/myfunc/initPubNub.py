@@ -36,8 +36,8 @@ def initPubNub(stdscr):
         editwin.erase()
 
     pnconfig = PNConfiguration()
-    pnconfig.subscribe_key = os.getenv("DEV_SUB_KEY")
-    pnconfig.publish_key = os.getenv("DEV_PUB_KEY")
+    pnconfig.subscribe_key = os.getenv("SUB_KEY")
+    pnconfig.publish_key = os.getenv("PUB_KEY")
     pnconfig.ssl = True
     pnconfig.cipher_key = os.getenv("CYPHER_KEY")
     pnconfig.uuid = pseudo
