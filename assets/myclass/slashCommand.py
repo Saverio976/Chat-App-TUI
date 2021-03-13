@@ -12,7 +12,8 @@ class SlashCommand:
             "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
             "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
             "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
-            "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"]
+            "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"],
+            "history" : ["history <True/False>", self.set_historyfile_traceback, "Si True : met chaque message envoyé dans un fichier; si False : desactive"]
         }
 
     def run_command(self, command, arg):
@@ -154,3 +155,25 @@ class SlashCommand:
             arg = 1
         self._writeMessage.PadDOWN(arg)
         return True
+
+    def set_historyfile_traceback(self, arg):
+        """
+        goal :
+            message send by user will be append to the assets/doc/data/history.txt
+            if arg is True
+            if False : no file history traceback
+        arg :
+            arg : arg : True/False
+        return :
+            True # stay_connected will stay True
+        """
+        if arg not in ["True", "False"]:
+            return self.help(arg)
+        if arg == "True":
+            self._writeMessage._is_history_file = True
+            self._writeMessage.write_system_message("Traceback History File start !")
+        else:
+            self._writeMessage._is_history_file = False
+            self._writeMessage.write_system_message("Traceback History File end !")
+        return True
+            

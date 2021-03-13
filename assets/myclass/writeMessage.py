@@ -12,7 +12,7 @@ class WriteMessage:
         lry : lower right y
         lrx : lower right x
     """
-    def __init__(self, n_line, n_col, uly, ulx, lry, lrx):
+    def __init__(self, n_line, n_col, uly, ulx, lry, lrx, history_file=False):
         self._max_line = n_line
         self._n_col = n_col
         self._uly = uly
@@ -20,6 +20,7 @@ class WriteMessage:
         self._lry = lry
         self._lrx = lrx
         self._history = []
+        self._is_history_file = history_file
         curses.start_color()
         if curses.has_colors(): # pylint: disable=no-member
             self._curses_color = True
@@ -152,6 +153,9 @@ class WriteMessage:
         else:
             self._pad.addstr(1,19, pseudo)
         self.write_system_message("Voir les différentes commandes possibles : /help")
+        self.write_system_message("Voici une liste de racourcis clavier :")
+        self.write_system_message("Ctrl+h = supprime le caractere arriere")
+        self.write_system_message("Ctrl+d = supprime le caractere selectionné")
         self.write_system_message("Ecris le message et appui sur Ctrl+G")
         
         self.pad_refresh()
@@ -212,6 +216,9 @@ class WriteMessage:
         if len(self._history) > 20:
             del self._history[0]
         self._history.append(data)
+        if self._is_history_file:
+            with open("assets/doc/data/history.txt", "a") as fd:
+                fd.write("\n"+" ".join(data[1:]))
 
     def split_large_text(self, data):
         """
