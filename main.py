@@ -22,7 +22,7 @@ from assets.myclass.presenceListener import PresenceListener
 from assets.myfunc.sanitizeStr import sanitizeStr
 
 # load env variable
-load_dotenv()
+load_dotenv(dotenv_path="assets/doc/data/.env")
 
 def main(stdscr):
     pad_localisation, rectangle_localisation, editwin_localisation = defineWindowArea()
