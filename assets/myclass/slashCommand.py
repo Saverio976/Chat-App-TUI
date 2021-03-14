@@ -8,7 +8,7 @@ class SlashCommand:
             "help" : ["help" ,self.help, "affiche les commandes disponibles + descriptions"],
             "fin" : ["fin", self.fin, "ferme la session et se deconnecte"],
             "here" : ["join", self.here, "envoi un message prévenant votre présence"],
-            #"set_cipher" : ["set_cipher <key>", self.set_cipher, "rajouter un chifrement gràce à cette clefs"],
+            "set_cipher" : ["set_cipher <key>", self.set_cipher, "rajouter un chifrement gràce à cette clefs"],
             "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
             "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
             "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
@@ -71,18 +71,18 @@ class SlashCommand:
         self._o_pubnub.publish().channel("général").message("/here").sync()
         return True
 
-    #def set_cipher(self, arg):
-    #    """
-    #    goal :
-    #        set a cipher key to encrypt message and let other personn don't understand
-    #    arg :
-    #        arg : arg : the cypher key
-    #    return 
-    #        True # stay_connected will stay True
-    #    """
-    #    self._o_pubnub.config.cipher_key = arg
-    #    self._writeMessage.write_system_message("cipher key modified/created")
-    #    return True
+    def set_cipher(self, arg):
+        """
+        goal :
+            set a cipher key to encrypt message and let other don't understand
+        arg :
+            arg : arg : the cypher key
+        return 
+            True # stay_connected will stay True
+        """
+        self._o_pubnub.config.cipher_key = arg
+        self._writeMessage.write_system_message("cipher key modified/created")
+        return True
     
     def ping(self, arg):
         """
@@ -112,7 +112,7 @@ class SlashCommand:
             channel = result.channels[0]
             self._writeMessage.write_system_message("Liste des présents :")
             for member in channel.occupants:
-                self._writeMessage.write_system_message(f"-> {member.uuid[:-10]}##{member.uuid[-10:]}")
+                self._writeMessage.write_system_message(f"-> {member.uuid[:-10]}#{member.uuid[-10:]}")
 
         self._o_pubnub.here_now()\
             .channels("général")\

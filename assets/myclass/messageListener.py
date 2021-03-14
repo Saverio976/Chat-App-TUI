@@ -8,21 +8,22 @@ class MessageListener(SubscribeCallback):
     def message(self, o_pubnub, msg):
         #if o_pubnub.uuid == msg.publisher:
         #    return None
-
+        
         content = msg.message
         author = f"{msg.publisher[:-10]}#{msg.publisher[-10:]}"
 
         if content == "/fin":
             self._writeMessage.write_system_message(f"{author} a quitté le channel")
             return None
-        if content == "/here":
+        elif content == "/here":
             self._writeMessage.write_system_message(f"{author} est dans le channel")
             return None
-        if content == "[+inspect+]":
+        elif content == "[+inspect+]":
             self._writeMessage.write_signal_message(author, "FAIT SON INSPECTEUR")
             return None
-        if content.startswith("/ping "):
+        elif content.startswith("/ping "):
             self._writeMessage.write_ping_message(author, content[6:])
             return None
-
-        self._writeMessage.write_new_message(author, content)
+        else:
+            self._writeMessage.write_new_message(author, content)
+            return None
