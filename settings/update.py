@@ -12,14 +12,13 @@ def update():
     arg : no
     return : no
     """
-    repository_download = "https://api.github.com/repos/Saverio976/Chat-App-TUI/zipball/main"
+    repository_download = "https://github.com/Saverio976/Chat-App-TUI/archive/main.zip"
     name = "Chat-App-TUI-main.zip"
     r = requests.get(repository_download, stream=True)
     with open(name, "wb") as fd:
         for chunk in r.iter_content(chunk_size=128):
             fd.write(chunk)
     unpack_archive(name, "..", "zip")
-    
     print("Up To Date")
     sys.exit()
 
