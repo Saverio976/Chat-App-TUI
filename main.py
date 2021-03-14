@@ -1,8 +1,5 @@
-# Sys
+# exit Sys, load Env
 from sys import exit
-# thread
-import threading
-# Env
 from dotenv import load_dotenv
 # time
 from time import sleep as tsleep
@@ -13,13 +10,13 @@ from curses.textpad import Textbox, rectangle
 from assets.myclass.writeMessage import WriteMessage # Write data on pad
 from assets.myfunc.defineWindowArea import defineWindowArea # return localisation
 # Slash Command
-from assets.myclass.slashCommand import SlashCommand
+from assets.myclass.slashCommand import SlashCommand # all command in a class
 # PubNub related
-from assets.myfunc.initPubNub import initPubNub
-from assets.myclass.messageListener import MessageListener
-from assets.myclass.presenceListener import PresenceListener
+from assets.myfunc.initPubNub import initPubNub # define the pubnub object
+from assets.myclass.messageListener import MessageListener # listne message
+from assets.myclass.presenceListener import PresenceListener # listne presence action
 # sanitize string to publish
-from assets.myfunc.sanitizeStr import sanitizeStr
+from assets.myfunc.sanitizeStr import sanitizeStr # escape \ and "
 
 # load env variable
 load_dotenv(dotenv_path="assets/doc/data/.env")
