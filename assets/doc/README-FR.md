@@ -38,7 +38,8 @@ la première fois que vous allez la lancer, on va vous demander un pseudo
 Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un message
 
 # To Read
-la commande set_cipher n'est pas disponible pour un temps indeterminé
+1)
+/set_cipher est de nouveau disponible ( une comande pour mettre un clefs de chiffrement)
 
 ## quand vous voulez avoir la nouvelle version sans faire beaucoup de mouvement
 

@@ -38,7 +38,14 @@ The first time you will run this app-like, it will ask you a pseudo
 This pseudo will be print to all present people on a channel when you will send a message
 
 # To Read
-the commands set_cipher will be not alowed for an indeterminate time
+1)
+/set_cipher come back ! ( command to set a cipher key for sending message )
+
+2)
+/history is a command to save all message in a file (assets/doc/data/history.txt)
+`/history True` : save message
+`/history False` : no longer save message
+default on every launch : False
 
 ## when you want the new version without doing some stuf
 
