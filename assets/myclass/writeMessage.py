@@ -213,7 +213,7 @@ class WriteMessage:
         return :
             None
         """
-        if len(self._history) > 20:
+        if len(self._history) > self._max_line*(1/4):
             del self._history[0]
         self._history.append(data)
         if self._is_history_file:

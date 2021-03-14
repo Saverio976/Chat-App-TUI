@@ -8,7 +8,7 @@ class SlashCommand:
             "help" : ["help" ,self.help, "affiche les commandes disponibles + descriptions"],
             "fin" : ["fin", self.fin, "ferme la session et se deconnecte"],
             "here" : ["join", self.here, "envoi un message prévenant votre présence"],
-            "set_cipher" : ["set_cipher <key>", self.set_cipher, "rajouter un chifrement gràce à cette clefs"],
+            "set_cipher" : ["set_cipher [key]", self.set_cipher, "rajouter un chifrement gràce à cette clefs; si pas de clefs, enlève le chiffrement"],
             "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
             "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
             "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
@@ -80,8 +80,12 @@ class SlashCommand:
         return 
             True # stay_connected will stay True
         """
-        self._o_pubnub.config.cipher_key = arg
-        self._writeMessage.write_system_message("cipher key modified/created")
+        if arg == "":
+            self._o_pubnub.config.cipher_key = None
+            self._writeMessage.write_system_message("cipher key deleted")
+        else:
+            self._o_pubnub.config.cipher_key = arg
+            self._writeMessage.write_system_message("cipher key modified/created")
         return True
     
     def ping(self, arg):
