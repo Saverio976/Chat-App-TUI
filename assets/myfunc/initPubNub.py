@@ -9,9 +9,12 @@ from curses.textpad import Textbox, rectangle
 from random import randint
 
 # PubNub
+import pubnub
 from pubnub.pubnub import PubNub
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.enums import PNReconnectionPolicy
+
+pubnub.set_stream_logger('pubnub', level=pubnub.logging.CRITICAL)
 
 def initPubNub(stdscr):
     """
