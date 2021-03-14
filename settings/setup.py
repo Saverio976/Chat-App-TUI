@@ -1,3 +1,6 @@
+"""
+file to setup first installation of required package
+"""
 import sys
 import subprocess
 

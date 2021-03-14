@@ -35,7 +35,7 @@ def main(stdscr):
     o_pubnub.add_listener(PresenceListener(writemessage))
     o_pubnub.subscribe().channels("général").with_presence().execute()
 
-    stdscr.addstr(0, 0, "chat app [BETA]")
+    stdscr.addstr(0, 0, "chat app [v0.1]")
     stdscr.refresh()
 
     # send welcome start up message

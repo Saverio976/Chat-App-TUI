@@ -1,13 +1,14 @@
+"""
+file with only initPubNub function
+"and set the debug level to CRITICAL"
+"""
 # get env
 import os
-
 # TUI for ask pseudo
 import curses
 from curses.textpad import Textbox, rectangle
-
 # to ensure that every pseudo will be the only one
 from random import randint
-
 # PubNub
 import pubnub
 from pubnub.pubnub import PubNub
@@ -18,6 +19,10 @@ pubnub.set_stream_logger('pubnub', level=pubnub.logging.CRITICAL)
 
 def initPubNub(stdscr):
     """
+    goal :
+        ask for a pseudo if not in the path
+    arg :
+        stdscr : the screen initialised in main.py
     return :
         PubNub object with configuration
         and add MySubscribeCallBack listner

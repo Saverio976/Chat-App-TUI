@@ -1,13 +1,26 @@
+"""
+file with only th SlashCommand class
+"""
+
 import curses
 
 class SlashCommand:
+    """
+    goal :
+        have all command in a simple class
+    arg :
+        writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
+        o_pubnub : PubNub object (init in assets/myfunc/initPubNub.py)
+    return :
+        a SlashCommand object
+    """
     def __init__(self, writemessage, o_pubnub):
         self._writeMessage = writemessage
         self._o_pubnub = o_pubnub
         self._command = {
             "help" : ["help" ,self.help, "affiche les commandes disponibles + descriptions"],
             "fin" : ["fin", self.fin, "ferme la session et se deconnecte"],
-            "here" : ["join", self.here, "envoi un message prévenant votre présence"],
+            "here" : ["here", self.here, "envoi un message prévenant votre présence"],
             "set_cipher" : ["set_cipher [key]", self.set_cipher, "rajouter un chifrement gràce à cette clefs; si pas de clefs, enlève le chiffrement"],
             "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
             "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],

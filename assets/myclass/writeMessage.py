@@ -1,3 +1,6 @@
+"""
+file with only WriteMessage class
+"""
 import curses
 
 class WriteMessage:
@@ -11,16 +14,14 @@ class WriteMessage:
         ulx : upper lef x
         lry : lower right y
         lrx : lower right x
+    return :
+        WriteMessage object
     """
     def __init__(self, n_line, n_col, uly, ulx, lry, lrx, history_file=False):
-        self._max_line = n_line
-        self._n_col = n_col
-        self._uly = uly
-        self._ulx = ulx
-        self._lry = lry
-        self._lrx = lrx
-        self._history = []
-        self._is_history_file = history_file
+        self._max_line = n_line; self._n_col = n_col
+        self._uly = uly; self._ulx = ulx
+        self._lry = lry; self._lrx = lrx
+        self._history = []; self._is_history_file = history_file
         curses.start_color()
         if curses.has_colors(): # pylint: disable=no-member
             self._curses_color = True

@@ -1,3 +1,6 @@
+"""
+file with only defineWindowArea function
+"""
 import curses
 
 def defineWindowArea():
@@ -5,6 +8,7 @@ def defineWindowArea():
     goal :
         define upper left corner and lower right corner
         of the 3 object (pad, rectangle, editwin)
+    arg : no
     return :
         list of 3 list [uly, ulx, lry, lrx]
     """

@@ -1,4 +1,6 @@
-import os
+"""
+file to update the directory (download from github)
+"""
 import sys
 import requests
 from shutil import unpack_archive
@@ -17,7 +19,7 @@ def update():
         for chunk in r.iter_content(chunk_size=128):
             fd.write(chunk)
     unpack_archive(name, "..", "zip")
-
+    
     print("Up To Date")
     sys.exit()
 

@@ -1,3 +1,7 @@
+"""
+file with only sanitizeStr function
+"""
+
 def sanitizeStr(data):
     """
     goal :
