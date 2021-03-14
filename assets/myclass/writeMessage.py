@@ -36,8 +36,7 @@ class WriteMessage:
         self._pad = curses.newpad(self._max_line, self._n_col) # pylint: disable=no-member
         self._pad.keypad(True)
         self._pad.refresh(0,0, self._uly,self._ulx, self._lry, self._lrx)
-        self._counter = 0
-        self._y = 0
+        self._counter = 0; self._y = 0
         for data in self._history:
             data[0](*[data[x] for x in range(1, len(data))], history=False)
             self.pad_refresh()
@@ -54,13 +53,11 @@ class WriteMessage:
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
-
         list_message = self.split_large_text(f"{author} : {message}")
         for msg in list_message:
             self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
-
-        self.pad_refresh()
+            self.pad_refresh()
         if history:
             self.add_to_history((self.write_new_message, author, message))
 
@@ -76,7 +73,6 @@ class WriteMessage:
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
-
         list_message = self.split_large_text(f"!!--> {author} : {message}")
         for msg in list_message:
             if self._curses_color:
@@ -84,8 +80,7 @@ class WriteMessage:
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
-
-        self.pad_refresh()
+            self.pad_refresh()
         if history:
             self.add_to_history((self.write_ping_message, author, message))
 
@@ -100,7 +95,6 @@ class WriteMessage:
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
-
         list_message = self.split_large_text(data)
         for msg in list_message:
             if self._curses_color:
@@ -108,8 +102,7 @@ class WriteMessage:
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
-        
-        self.pad_refresh()
+            self.pad_refresh()
         if history:
             self.add_to_history((self.write_system_message, data))
 
@@ -124,7 +117,6 @@ class WriteMessage:
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
-
         message = " ".join(args)
         list_message = self.split_large_text(message)
         for msg in list_message:
