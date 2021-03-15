@@ -39,7 +39,17 @@ Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un mes
 
 # To Read
 1)
+une nouvelle commande qui arrive bientot ``/switch_channel <channel_name>`` mais pas encore terminée
+vous devrez attendre encore un peu pour pouvoir parler dans plus d'un channel
+
+2)
 /set_cipher est de nouveau disponible ( une comande pour mettre un clefs de chiffrement)
+
+3)
+/history est une commande pour sauvegarder tous les messages dans un fichier ( assets/doc/data/history.txt )
+`/history True` : enregistrer les messages
+`/history False` : arrete d'enregistrer les messages
+par defaut à chaque début : False
 
 ## quand vous voulez avoir la nouvelle version sans faire beaucoup de mouvement
 

@@ -27,16 +27,28 @@ class SlashCommand:
             "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
             "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"],
             "history" : ["history <True/False>", self.set_historyfile_traceback, "Si True : met chaque message envoyé dans un fichier; si False : desactive"]
+            #"switch_channel" : ["switch_channel <channel_name>", self.change_channel, "se connecte à un autre channel"]
         }
 
-    def run_command(self, command, arg):
+    def run_command(self, message):
+        """
+        goal :
+            the main entry for this class and run command
+        arg :
+            message : the message "send"
+        return :
+            True to stay connected
+            False to disconnect
+        """
+        command = message.split()[0][1:] # we remove the "/"
+        arg = " ".join(message.split()[1:]) # we remove the "/" + command
         if command not in self._command.keys():
-            self._writeMessage.write_system_message("cette commande n'existe pas")
-            return self.run_command("help", "")
-        trigger_command = self._command[command][1]
-        if trigger_command == None:
-            return True
-        return trigger_command(arg)
+            self._writeMessage.write_signal_message("cette commande n'existe pas")
+            result = self.help(arg)
+        else :
+            func_command = self._command[command][1]
+            result = func_command(arg)
+        return result
 
     def help(self, arg):
         """
@@ -68,7 +80,8 @@ class SlashCommand:
         return :
             False # stay_connected will become False
         """
-        self._o_pubnub.unsubscribe_all()
+        channel = self._o_pubnub._channel_name
+        self._o_pubnub.unsubscribe().channels(channel)
         self._writeMessage.write_system_message("Au revoir")
         return False
 
@@ -130,15 +143,13 @@ class SlashCommand:
             self._writeMessage.write_system_message("Liste des présents :")
             for member in channel.occupants:
                 self._writeMessage.write_system_message(f"-> {member.uuid[:-10]}#{member.uuid[-10:]}")
-
+        channel = self._o_pubnub._channel_name
         self._o_pubnub.here_now()\
-            .channels("général")\
+            .channels(channel)\
             .include_uuids(True)\
             .pn_async(here_now_callback)
-        
         msg = "[+inspect+]"
-        self._o_pubnub.publish().channel("général").message(msg).sync()
-
+        self._o_pubnub.publish().channel(channel).message(msg).sync()
         return True
 
     def upPad(self, arg):
@@ -193,4 +204,21 @@ class SlashCommand:
             self._writeMessage._is_history_file = False
             self._writeMessage.write_system_message("Traceback History File end !")
         return True
-            
+
+    """def change_channel(self, arg):
+        \"""
+        goal :
+            switch channel
+        arg :
+            arg : channel name
+        return :
+            True # stay_connected will stay True
+        \"""
+        if arg == "":
+            return self.help(arg)
+        channel = self._o_pubnub._channel_name
+        self._o_pubnub.unsubscribe().channels(channel)
+        self._o_pubnub.subscribe().channels(arg).with_presence().execute()
+        self._o_pubnub._channel_name = arg
+        self._writeMessage.write_system_message(f"switch to {arg} channel")
+        return True"""

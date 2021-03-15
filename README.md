@@ -39,9 +39,13 @@ This pseudo will be print to all present people on a channel when you will send 
 
 # To Read
 1)
-/set_cipher come back ! ( command to set a cipher key for sending message )
+a new incoming command named ``/switch_channel <channel_name>`` but not finish
+so you need to wait more time to speak in more than one channel
 
 2)
+/set_cipher come back ! ( command to set a cipher key for sending message )
+
+3)
 /history is a command to save all message in a file (assets/doc/data/history.txt)
 `/history True` : save message
 `/history False` : no longer save message

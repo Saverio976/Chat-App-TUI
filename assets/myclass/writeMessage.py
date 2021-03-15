@@ -139,6 +139,7 @@ class WriteMessage:
         return :
             None
         """
+        pseudo = pseudo[:-10] + "#" + pseudo[-10:]
         self.write_system_message("Connection réalisée avec succès")
         self.write_system_message("Voici ton pseudo : ")
         if self._curses_color:
@@ -147,10 +148,8 @@ class WriteMessage:
             self._pad.addstr(1,19, pseudo)
         self.write_system_message("Voir les différentes commandes possibles : /help")
         self.write_system_message("Voici une liste de racourcis clavier :")
-        self.write_system_message("Ctrl+h = supprime le caractere arriere")
-        self.write_system_message("Ctrl+d = supprime le caractere selectionné")
-        self.write_system_message("Ecris le message et appui sur Ctrl+G")
-        
+        self.write_system_message("Ctrl+h = Backspace = supprime le caractere arriere")
+        self.write_system_message("Ctrl+G = envoyé un message")
         self.pad_refresh()
 
     def PadUP(self, nb):

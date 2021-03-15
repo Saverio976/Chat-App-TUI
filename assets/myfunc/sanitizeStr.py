@@ -11,6 +11,7 @@ def sanitizeStr(data):
     return :
         the sanitize data
     """
+    data = " ".join(data.split())
     new_msg = []
     for letter in data:
         if letter in ['"',"\\"]:
