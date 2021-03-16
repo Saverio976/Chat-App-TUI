@@ -4,7 +4,7 @@ file with only feditwin function
 from curses import newwin
 from curses.textpad import Textbox
 
-def feditwin(n_line, n_col, y, x):
+def feditwin(editwin_loc):
     """
     goal :
         create a window to write message in
@@ -16,6 +16,10 @@ def feditwin(n_line, n_col, y, x):
     return :
         box object object
     """
+    n_line = editwin_loc[2] - editwin_loc[0] or 1
+    n_col = editwin_loc[3] - editwin_loc[1]
+    y = editwin_loc[0]; x = editwin_loc[1]
+
     editwin = newwin(n_line, n_col, y, x)
     editwin.keypad(True)
     box = Textbox(editwin)
