@@ -17,11 +17,7 @@ class WriteMessage:
     return :
         WriteMessage object
     """
-    def __init__(self, n_line, n_col, uly, ulx, lry, lrx, history_file=False):
-        self._max_line = n_line; self._n_col = n_col
-        self._uly = uly; self._ulx = ulx
-        self._lry = lry; self._lrx = lrx
-        self._history = []; self._is_history_file = history_file
+    def __init__(self, history_file=False):
         curses.start_color()
         if curses.has_colors(): # pylint: disable=no-member
             self._curses_color = True
@@ -30,6 +26,12 @@ class WriteMessage:
             curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK) # pylint: disable=no-member
         else:
             self._curses_color = False
+        self._history = []; self._is_history_file = history_file
+
+    def update_loc(self, n_line, n_col, uly, ulx, lry, lrx, history_file=False):
+        self._max_line = n_line; self._n_col = n_col
+        self._uly = uly; self._ulx = ulx
+        self._lry = lry; self._lrx = lrx
         self.re_init()
 
     def re_init(self):
@@ -150,6 +152,7 @@ class WriteMessage:
         self.write_system_message("Voici une liste de racourcis clavier :")
         self.write_system_message("Ctrl+h = Backspace = supprime le caractere arriere")
         self.write_system_message("Ctrl+G = envoyé un message")
+        self.write_signal_message("Si vous modifiez la taille de la fenetre, envoyez un message blanc (ctrl+G)")
         self.pad_refresh()
 
     def PadUP(self, nb):
