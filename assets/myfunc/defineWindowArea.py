@@ -39,9 +39,3 @@ def define_pad_loc(pad_loc):
     uly = pad_loc[0]; ulx = pad_loc[1] # uper-left y and x
     lry = pad_loc[2]; lrx = pad_loc[3] # lower-right y and x
     return n_line, n_col, uly, ulx, lry, lrx
-
-def define_editwin_loc(editwin_loc):
-    n_line = editwin_loc[2] - editwin_loc[0] or 1
-    n_col = editwin_loc[3] - editwin_loc[1]
-    y = editwin_loc[0]; x = editwin_loc[1]
-    return n_line, n_col, y, x
