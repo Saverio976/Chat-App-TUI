@@ -14,9 +14,8 @@ from assets.myfunc.editwin import feditwin # create a window to get message
 from assets.myfunc.initPubNub import initPubNub # init PubNub object
 from assets.myfunc.sanitizeStr import sanitizeStr # escape char in a message
 from assets.myfunc.draw_rectangle import draw_rectangle # to fit window get message
-from assets.myfunc.defineWindowArea import (defineWindowArea, # create
-                                            define_pad_loc, # localisaton of
-                                            define_editwin_loc) # elements
+from assets.myfunc.defineWindowArea import (defineWindowArea, # create localisation
+                                            define_pad_loc) # of elements
 
 # load env variable
 load_dotenv(dotenv_path="assets/doc/data/.env")

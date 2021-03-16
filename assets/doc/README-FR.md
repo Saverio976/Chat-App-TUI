@@ -14,6 +14,7 @@ git clone https://github.com/Saverio976/Chat-App-TUI.git
 ```
 
 2) avec un navigateur internet
+
 ![downloadzip](/assets/doc/img/downloadzip.png "downloadzip")
 
 ## Comment la lancer
