@@ -20,11 +20,11 @@ from assets.myfunc.defineWindowArea import (defineWindowArea, # create localisat
 # load env variable
 load_dotenv(dotenv_path="assets/doc/data/.env")
 
-def edit_writemessage_pad(pad_loc, writemessage):
+def edit_writemessage_pad(pad_loc, writemessage): # update pad localisation
     n_line, n_col, uly, ulx, lry, lrx = define_pad_loc(pad_loc)
     writemessage.update_loc(n_line, n_col, uly, ulx, lry, lrx)
 
-def edit_stdscr_window(stdscr):
+def edit_stdscr_window(stdscr): # update the header message
     stdscr.addstr(0, 0, "chat app [v0.1]")
     stdscr.refresh()
 
