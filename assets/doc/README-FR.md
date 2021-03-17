@@ -40,6 +40,9 @@ Ce pseudo sera afficher quand vous vous connecterez ou quand vous enverez un mes
 
 # To Read
 1)
+vous pouvez maintenant envoyer un fichier et le telecharger (regardez /help pour plus de detail)
+
+1)
 une nouvelle commande qui arrive bientot ``/switch_channel <channel_name>`` mais pas encore terminée
 vous devrez attendre encore un peu pour pouvoir parler dans plus d'un channel
 

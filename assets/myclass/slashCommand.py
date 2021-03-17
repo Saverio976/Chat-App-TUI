@@ -3,6 +3,7 @@ file with only th SlashCommand class
 """
 
 import curses
+from assets.myfunc.sanitizeStr import sanitizeStr # pylint: disable=import-error
 
 class SlashCommand:
     """
@@ -26,8 +27,10 @@ class SlashCommand:
             "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
             "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
             "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"],
-            "history" : ["history <True/False>", self.set_historyfile_traceback, "Si True : met chaque message envoyé dans un fichier; si False : desactive"]
-            #"switch_channel" : ["switch_channel <channel_name>", self.change_channel, "se connecte à un autre channel"]
+            "history" : ["history <True/False>", self.set_historyfile_traceback, "Si True : met chaque message envoyé dans un fichier; si False : desactive"],
+            "switch_channel" : ["switch_channel <channel_name>", self.change_channel, "se connecte à un autre channel"],
+            "send_file" : ["send_file <chemin_absolu>", self.send_file, "envoi un fichier pour que d'autres puissent l'avoir"],
+            "download_file" : ["download_file <fileID> <fileNAME>", self.download_file, "télécharge un fichier en donnant son id et son nom"]
         }
 
     def run_command(self, message):
@@ -205,15 +208,15 @@ class SlashCommand:
             self._writeMessage.write_system_message("Traceback History File end !")
         return True
 
-    """def change_channel(self, arg):
-        \"""
+    def change_channel(self, arg):
+        """
         goal :
             switch channel
         arg :
             arg : channel name
         return :
             True # stay_connected will stay True
-        \"""
+        """
         if arg == "":
             return self.help(arg)
         channel = self._o_pubnub._channel_name
@@ -221,4 +224,59 @@ class SlashCommand:
         self._o_pubnub.subscribe().channels(arg).with_presence().execute()
         self._o_pubnub._channel_name = arg
         self._writeMessage.write_system_message(f"switch to {arg} channel")
-        return True"""
+        return True
+
+    def send_file(self, arg):
+        """
+        goal :
+            send a file in the chat
+        arg :
+            arg : the path of the file
+        return :
+            True # stay_connected will stay True
+        """
+        if arg == "":
+            return self.help(arg)
+        try:
+            fileobject = open(arg, 'rb')
+        except:
+            self._writeMessage.write_system_message("fichier introuvable")
+            return True
+        channel = self._o_pubnub._channel_name
+        filename = arg.split("/")[-1]
+        msg = {"filename" : filename}
+
+        result = self._o_pubnub.send_file()\
+                    .channel(channel)\
+                    .file_name(filename)\
+                    .message(msg)\
+                    .should_store(False)\
+                    .file_object(fileobject).sync()
+        fileobject.close()
+        msg = "pour telecharger le fichier envoye : /download_file "
+        msg +=f"{sanitizeStr(result.result.file_id)} {sanitizeStr(result.result.name)}"
+        self._o_pubnub.publish().channel(channel).message(msg).sync()
+        return True
+
+    def download_file(self, arg):
+        """
+        goal :
+            download a file publish on a channel
+        arg :
+            arg :   first the fileID
+                    seconde the fileNAME
+        return :
+            True # stay_connected will stay True
+        """
+        args = arg.split()
+        if len(args) != 2:
+            return self.help(arg)
+        channel = self._o_pubnub._channel_name
+        result = self._o_pubnub.download_file()\
+                    .channel(channel)\
+                    .file_id(args[0])\
+                    .file_name(args[1]).sync()
+        with open(args[1], "wb") as fd:
+            fd.write(result.result.data)
+        self._writeMessage.write_system_message("fichier téléchargé")
+        return True

@@ -40,6 +40,9 @@ This pseudo will be print to all present people on a channel when you will send 
 
 # To Read
 1)
+you can now send a file and download it (check /help for more info)
+
+1)
 a new incoming command named ``/switch_channel <channel_name>`` but not finish
 so you need to wait more time to speak in more than one channel
 
