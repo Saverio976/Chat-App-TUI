@@ -26,13 +26,17 @@ def setup():
         install_library[-1] += "lin.txt"
 
     if int(sys.version[2]) >= 4:
+        print(str(python_exec) + " " + " ".join(pip_upgrade))
         subprocess.run([python_exec, *pip_upgrade], stdout=subprocess.PIPE)
+        print(str(python_exec) + " " + " ".join(install_library))
         subprocess.run([python_exec, *install_library], stdout=subprocess.PIPE)
     else:
+        print(str(python_exec) + " " + " ".join(pip_upgrade))
         subprocess.call(python_exec, *pip_upgrade, stdout=subprocess.PIPE)
+        print(str(python_exec) + " " + " ".join(install_library))
         subprocess.call(python_exec, *install_library, stdout=subprocess.PIPE)
 
-    print("Setup Pass Well")
+    print("all requirements has been installed")
     sys.exit()
 
 if __name__ == "__main__":
