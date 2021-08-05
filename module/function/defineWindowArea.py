@@ -1,4 +1,4 @@
-"""file with only defineWindowArea function"""
+"""File with only defineWindowArea function."""
 
 def defineWindowArea(LINES, COLS):
     """

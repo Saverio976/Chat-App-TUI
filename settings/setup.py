@@ -1,4 +1,4 @@
-"""file to setup first installation of required package"""
+"""File to setup first installation of required package."""
 
 import sys
 import subprocess
@@ -10,12 +10,7 @@ if int(sys.version[0]) != 3:
 python_exec = sys.executable
 
 def setup():
-    """
-    goal :
-        initialize the first installation of all dependencies
-    arg : no
-    return : no
-    """
+    """Initialize the first installation of all dependencies."""
     pip_upgrade = ("-m", "pip", "install", "--upgrade", "pip")
 
     install_library = ["-m", "pip", "install", "-r", "assets/requirements/"]
