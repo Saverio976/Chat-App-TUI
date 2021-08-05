@@ -34,7 +34,7 @@ class SlashCommand:
             "down" : ["down", self.downPad, "sroll vers le bas d'un message"],
             "down_" : ["down <nombre>", self.downPad, "scroll vers le bas du nombre de message"],
             "history" : ["history True", self.set_historyfile_traceback, "enregistre dans un fichier chaque message reçu"],
-            "history" : ["history False", self.set_historyfile_traceback, "desactive l'enregistrement"],
+            "history_" : ["history False", self.set_historyfile_traceback, "desactive l'enregistrement"],
             #"switch_channel" : ["switch_channel <channel_name>", self.change_channel, "se connecte à un autre channel"],
             "send_file" : ["send_file <chemin_absolu_du_fichier>", self.send_file, "envoi un fichier dans le tchat"],
             "download_file" : ["download_file <ID du fichier> <nom du fichier>", self.download_file, "telecharge un fichier envoyé dans le tchat"]
