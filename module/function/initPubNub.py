@@ -3,8 +3,10 @@ file with only initPubNub function
 "and set the debug level to CRITICAL"
 """
 
-# get env, and random generator
+# get env
 import os
+# random generator
+import secrets, string
 # TUI for ask pseudo
 import curses
 from curses.textpad import Textbox
@@ -20,13 +22,17 @@ pubnub.set_stream_logger('pubnub', level=pubnub.logging.CRITICAL)
 
 def initPubNub(stdscr):
     """
-    goal :
-        ask for a pseudo if not in the path
-    arg :
-        stdscr : the screen initialised in main.py
-    return :
-        PubNub object with configuration
-        and add MySubscribeCallBack listner
+    Ask for a pseudo if not in the path and init the pubnub.PubNub object.
+
+    Parameters
+    ----------
+        stdscr: :class:curses._CursesWindow
+            the screen initialised in main.py
+
+    Returns
+    -------
+    :class:pubnub.PubNub
+        with configuration
     """
     pseudo = os.getenv("PSEUDO")
     if pseudo == None:
@@ -39,8 +45,9 @@ def initPubNub(stdscr):
             box = Textbox(editwin)
             box.edit()
             pseudo = " ".join(box.gather().split())
-        pseudo += os.urandom(10).decode('utf-8')
-        with open("assets/document/data/.env", "a") as file:
+        alphabet = string.ascii_letters + string.digits
+        pseudo += ''.join(secrets.choice(alphabet) for i in range(10))
+        with open("assets/data/.env", "a") as file:
             file.write(f"\nPSEUDO=\"{pseudo}\"")
         editwin.erase()
 

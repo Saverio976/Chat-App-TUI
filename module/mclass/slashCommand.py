@@ -58,9 +58,9 @@ class SlashCommand:
         command = message.split()[0][1:] # we remove the "/"
         arg = " ".join(message.split()[1:]) # we remove the "/" + command
         if command not in self._command.keys():
-            self._writeMessage.write_signal_message("cette commande n'existe pas")
-            result = self.help(arg)
-        else :
+            self._writeMessage.write_signal_message("cette commande n'existe pas, faites /help pour une liste de commande")
+            result = True
+        else:
             func_command = self._command[command][1]
             result = func_command(arg)
         return result
@@ -81,13 +81,15 @@ class SlashCommand:
         bool
             True.
         """
-        msg1 = "Les éléments entre < > sont des informations indispensables"
-        msg2 = "Les éléments entre [ ] sont des éléments optionels"
-        msg3 = "Toutes les commandes commencent par un /"
-        msg4 = "nom de la commande  ||  description"
-        list_send = [msg1, msg2, msg3, msg4]
-        for value in self._command.values():
-            list_send.append(f"{value[0]} || {value[2]}")
+        list_send = []
+        if arg != "":
+            for command, explanation in self._command.items():
+                if command.startswith(arg):
+                    list_send.append(f"{explanation[0]} :: {explanation[2]}")
+        else:
+            list_send.append("les commandes commencent toutes par /")
+            list_send.append("les éléments entre < > sont obligatoire")
+            list_send.extend([explanation[0] for explanation in self._command.values()])
         self._writeMessage._y = self._writeMessage._counter
         for x in list_send:
             self._writeMessage.write_system_message(x)
