@@ -27,7 +27,17 @@ git clone https://github.com/Saverio976/Chat-App-TUI.git Chat-App-TUI-main
 
 - and install all required library
 ```shell
-python settings/setup.py
+python -m pip install --upgrade pip
+```
+
+- on windows
+```shell
+python -m pip install -r aseets/requirements/win.txt
+```
+
+- on other os
+```shell
+python -m pip install -r assets/requirements/nix.txt
 ```
 
 ## launch the project
