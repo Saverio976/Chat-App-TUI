@@ -111,6 +111,6 @@ default on every launch : False
 
 ## Contact
 
-before send a mail, please let an issue, or a PR
+before send a mail, please let an `issue`, or a `PR`
 
 [![paradox-contact](https://img.shields.io/badge/Saverio-personnex976%40gmail.com-blue)](mailto:personnex976%40gmail.com)
