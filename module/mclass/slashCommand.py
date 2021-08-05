@@ -106,7 +106,7 @@ class SlashCommand:
     def set_cipher(self, arg):
         """
         Set a cipher key to encrypt message and let other don't understand.
-        
+
         Parameters
         ----------
         arg: str
