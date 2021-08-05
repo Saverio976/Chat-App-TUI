@@ -53,13 +53,16 @@ class WriteMessage:
 
     def write_new_message(self, author, message, history=True):
         """
-        goal :
-            write a message publish by an user
-        arg :
-            author : author publisher
-            message : the message content
-        return :
-            None
+        Write a message publish by an user.
+
+        Parameters
+        ----------
+        author: str
+            The author of the message.
+        message: str
+            The message to write.
+        history: [Optional] bool
+            Add the message to record history or not.
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
@@ -73,13 +76,16 @@ class WriteMessage:
 
     def write_ping_message(self, author, message, history=True):
         """
-        goal :
-            write a ping message publish by an user
-        arg :
-            author : author publisher
-            message : the message content
-        return :
-            None
+        Write a ping message publish by an user.
+
+        Parameters
+        ----------
+        author: str
+            The author of the message.
+        message: str
+            The message to write.
+        history: [Optional] bool
+            Add the message to record history or not.
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
@@ -96,12 +102,12 @@ class WriteMessage:
 
     def write_system_message(self, data, history=True):
         """
-        goal :
-            write a system message (in red)
-        arg :
-            data : data
-        return :
-            None
+        Write a system message (in red).
+
+        Parameters
+        ----------
+        data: str
+            The data to write.
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
@@ -118,12 +124,14 @@ class WriteMessage:
 
     def write_signal_message(self, *args, history=True):
         """
-        goal :
-            write signal message (with green color)
-        arg :
-            *args : all arg that you want
-        return :
-            None
+        Write signal message (with green color)
+
+        Parameters
+        ----------
+        *args : *str
+            All arg that you want.
+        history: [Optional] bool
+            Add the message to record history or not.
         """
         if self._counter >= self._max_line*2/3:
             self.re_init()
@@ -142,12 +150,12 @@ class WriteMessage:
 
     def write_start_up_message(self, pseudo):
         """
-        goal :
-            write the start up message
-        arg :
-            pseudo : user pseudo
-        return :
-            None
+        Write the start up message.
+
+        Parameters
+        ----------
+        pseudo: str
+            The user pseudo.
         """
         pseudo = pseudo[:-10] + "#" + pseudo[-10:]
         self.write_system_message("Connection réalisée avec succès")
@@ -165,12 +173,12 @@ class WriteMessage:
 
     def PadUP(self, nb):
         """
-        goal :
-            go up in history message
-        arg :
-            nb : number to up
-        return :
-            None
+        Go up in history message.
+
+        Parameters
+        ----------
+        nb: int
+            The number to up.
         """
         if self._y - nb <= 0:
             self._y = (self._lry - self._uly) + 2
@@ -180,12 +188,12 @@ class WriteMessage:
 
     def PadDOWN(self, nb):
         """
-        goal :
-            go down in history message
-        arg :
-            nb : number to up
-        return :
-            None
+        Go down in history message.
+
+        Parameters
+        ----------
+        nn: int
+            The number to down.
         """
         if self._y + nb >= self._counter:
             self._y = self._counter
@@ -194,13 +202,7 @@ class WriteMessage:
         self.pad_refresh()
 
     def pad_refresh(self):
-        """
-        goal :
-            refresh pad screen to be in the right position self._y
-        arg : no arg
-        return :
-            None
-        """
+        """Refresh pad screen to be in the right position self._y."""
         if self._y <= (self._lry - self._uly) - 1:
             self._pad.refresh(0,0, self._uly,self._ulx, self._lry,self._lrx)
         else:
@@ -209,12 +211,12 @@ class WriteMessage:
 
     def add_to_history(self, data):
         """
-        goal :
-            get a trace of the last 20 message
-        arg :
-            data : (pointer_to_the_write_type, *args)
-        return :
-            None
+        Get a trace of the last message.
+        
+        Parameters
+        ----------
+        data: Any
+            Data to record
         """
         if len(self._history) > self._max_line*(1/4):
             del self._history[0]
@@ -226,12 +228,17 @@ class WriteMessage:
     @staticmethod
     def split_large_text(data):
         """
-        goal :
-            split text to fit in the window
-        arg :
-            data : the whole data to write
-        return :
-            list of split message
+        Split text to fit in the window.
+
+        Parameters
+        ----------
+        data: str
+            The whole data to write.
+
+        Returns
+        -------
+        list
+            List of split message.
         """
         if len(data) >= curses.COLS: # pylint: disable=no-member
             l_data = []
