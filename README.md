@@ -26,16 +26,17 @@ git clone https://github.com/Saverio976/Chat-App-TUI.git Chat-App-TUI-main
 - open a [terminal / command prompt] on this project path (tips for Windows : assets/docs/open_cmd.md)
 
 - and install all required library
+
 ```shell
 python -m pip install --upgrade pip
 ```
 
-- on windows
+on windows
 ```shell
 python -m pip install -r aseets/requirements/win.txt
 ```
 
-- on other os
+on other os
 ```shell
 python -m pip install -r assets/requirements/nix.txt
 ```
@@ -49,7 +50,7 @@ python main.py
 
 ## update the project
 
-on the project path open a [terminal/ command prompt]
+- on the project path open a [terminal/ command prompt]
 ```shell
 python settings/update.py
 ```
