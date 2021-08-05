@@ -241,15 +241,21 @@ class SlashCommand:
             self._writeMessage.write_system_message("Traceback History File end !")
         return True
 
-    """def change_channel(self, arg):
-        """"""
-        goal :
-            switch channel
-        arg :
-            arg : channel name
-        return :
-            True # stay_connected will stay True
-        """"""
+    def change_channel(self, arg):
+        """
+        Switch channel.
+
+       Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            the channel name
+
+        Returns
+        -------
+        bool
+            True.
+        """
         if arg == "":
             return self.help(arg)
         channel = self._o_pubnub._channel_name
@@ -258,7 +264,6 @@ class SlashCommand:
         self._o_pubnub._channel_name = arg
         self._writeMessage.write_system_message(f"switch to {arg} channel")
         return True
-    """
 
     def send_file(self, arg):
         """
