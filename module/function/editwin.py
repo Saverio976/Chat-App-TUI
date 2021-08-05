@@ -1,6 +1,5 @@
-"""
-file with only feditwin function
-"""
+"""file with only feditwin function"""
+
 from curses import newwin
 from curses.textpad import Textbox
 

@@ -1,21 +1,19 @@
-"""
-file with only th SlashCommand class
-"""
+"""file with only th SlashCommand class"""
 
-import curses
+import os
 from module.function.sanitizeStr import sanitizeStr # pylint: disable=import-error
 
 class SlashCommand:
-    """
-    goal :
-        have all command in a simple class
-    arg :
-        writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
-        o_pubnub : PubNub object (init in assets/myfunc/initPubNub.py)
-    return :
-        a SlashCommand object
-    """
     def __init__(self, writemessage, o_pubnub):
+        """
+        goal :
+            have all command in a simple class
+        arg :
+            writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
+            o_pubnub : PubNub object (init in assets/myfunc/initPubNub.py)
+        return :
+            a SlashCommand object
+        """
         self._writeMessage = writemessage
         self._o_pubnub = o_pubnub
         self._command = {
@@ -106,7 +104,7 @@ class SlashCommand:
             set a cipher key to encrypt message and let other don't understand
         arg :
             arg : arg : the cypher key
-        return 
+        return
             True # stay_connected will stay True
         """
         if arg == "":
@@ -237,11 +235,11 @@ class SlashCommand:
         """
         if arg == "":
             return self.help(arg)
-        try:
-            fileobject = open(arg, 'rb')
-        except:
+        if not os.path.isfile(arg):
             self._writeMessage.write_system_message("fichier introuvable")
             return True
+            
+        fileobject = open(arg, 'rb')    
         channel = self._o_pubnub._channel_name
         filename = arg.split("/")[-1]
         msg = {"filename" : filename}

@@ -1,6 +1,5 @@
-"""
-file with only draw_rectangle function
-"""
+"""file with only draw_rectangle function"""
+
 from curses.textpad import rectangle
 
 def draw_rectangle(stdscr, loc, data):
@@ -8,7 +7,7 @@ def draw_rectangle(stdscr, loc, data):
     goal :
         draw a rectangle to fit the zone to write message
     arg :
-        stdscr : the screen 
+        stdscr : the screen
         loc : [uly, ulx, lry, lrx]
         data : a message to display at the begining
     return :

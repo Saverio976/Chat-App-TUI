@@ -1,6 +1,4 @@
-"""
-file with only sanitizeStr function
-"""
+"""file with only sanitizeStr function"""
 
 def sanitizeStr(data):
     """

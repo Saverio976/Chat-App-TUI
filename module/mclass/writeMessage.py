@@ -1,23 +1,22 @@
-"""
-file with only WriteMessage class
-"""
+"""file with only WriteMessage class"""
+
 import curses
 
 class WriteMessage:
-    """
-    goal :
-        write data to the pad
-    arg :
-        n_line : number of line of the pad
-        n_col : number of column of the pad
-        uly : upper left y
-        ulx : upper lef x
-        lry : lower right y
-        lrx : lower right x
-    return :
-        WriteMessage object
-    """
     def __init__(self, history_file=False):
+        """
+        goal :
+            write data to the pad
+        arg :
+            n_line : number of line of the pad
+            n_col : number of column of the pad
+            uly : upper left y
+            ulx : upper lef x
+            lry : lower right y
+            lrx : lower right x
+        return :
+            WriteMessage object
+        """
         curses.start_color()
         if curses.has_colors(): # pylint: disable=no-member
             self._curses_color = True
@@ -42,7 +41,7 @@ class WriteMessage:
         for data in self._history:
             data[0](*[data[x] for x in range(1, len(data))], history=False)
             self.pad_refresh()
-        
+
     def write_new_message(self, author, message, history=True):
         """
         goal :
@@ -215,7 +214,8 @@ class WriteMessage:
             with open("assets/document/data/history.txt", "a") as fd:
                 fd.write("\n"+" ".join(data[1:]))
 
-    def split_large_text(self, data):
+    @staticmethod
+    def split_large_text(data):
         """
         goal :
             split text to fit in the window

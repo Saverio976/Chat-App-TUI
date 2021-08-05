@@ -1,7 +1,4 @@
-"""
-file with only defineWindowArea function
-"""
-import curses
+"""file with only defineWindowArea function"""
 
 def defineWindowArea(LINES, COLS):
     """
@@ -35,7 +32,7 @@ def defineWindowArea(LINES, COLS):
     return pad_localisation, rectangle_localisation, editwin_localisation
 
 def define_pad_loc(pad_loc):
-    n_line = 100; n_col = pad_loc[3] - pad_loc[1] # n_line and n_col
-    uly = pad_loc[0]; ulx = pad_loc[1] # uper-left y and x
-    lry = pad_loc[2]; lrx = pad_loc[3] # lower-right y and x
+    n_line = 100; n_col = pad_loc[3] - pad_loc[1]                               # n_line and n_col
+    uly = pad_loc[0]; ulx = pad_loc[1]                                          # uper-left y and x
+    lry = pad_loc[2]; lrx = pad_loc[3]                                          # lower-right y and x
     return n_line, n_col, uly, ulx, lry, lrx

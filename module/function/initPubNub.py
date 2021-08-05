@@ -2,13 +2,14 @@
 file with only initPubNub function
 "and set the debug level to CRITICAL"
 """
-# get env
+
+# get env, and random generator
 import os
 # TUI for ask pseudo
 import curses
-from curses.textpad import Textbox, rectangle
+from curses.textpad import Textbox
 # to ensure that every pseudo will be the only one
-from random import randint
+
 # PubNub
 import pubnub
 from pubnub.pubnub import PubNub
@@ -38,7 +39,7 @@ def initPubNub(stdscr):
             box = Textbox(editwin)
             box.edit()
             pseudo = " ".join(box.gather().split())
-        pseudo += "".join([str(randint(0,9)) for x in range(10)])
+        pseudo += os.urandom(10).decode('utf-8')
         with open("assets/document/data/.env", "a") as file:
             file.write(f"\nPSEUDO=\"{pseudo}\"")
         editwin.erase()

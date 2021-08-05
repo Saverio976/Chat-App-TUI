@@ -18,7 +18,7 @@ from module.function.draw_rectangle import draw_rectangle                   # to
 from module.function.defineWindowArea import (
     defineWindowArea,                                                       # create localisation
     define_pad_loc                                                          # of elements
-)     
+)
 
 load_dotenv(dotenv_path="assets/data/.env")                                 # load env variable
 
@@ -44,7 +44,7 @@ def edit_stdscr_window(stdscr):                                             # up
 
 def main(stdscr):
     COLS, LINES = curses.COLS, curses.LINES
-    
+
     pad_loc, rectangle_loc, editwin_loc = defineWindowArea(LINES, COLS)     # define all localisation of elements
 
     #### the recv message screen
@@ -55,14 +55,14 @@ def main(stdscr):
 
     edit_stdscr_window(stdscr)                                              # header
     writemessage.write_start_up_message(f"{o_pubnub.uuid}")                 # welcome message
-    draw_rectangle(stdscr, rectangle_loc, "message :")                      # draw rectangle (from assets/myfunc/draw_rectangle.py)     
+    draw_rectangle(stdscr, rectangle_loc, "message :")                      # draw rectangle (from assets/myfunc/draw_rectangle.py)
     
     o_pubnub.add_listener(MessageListener(writemessage))                    # set message listener
     o_pubnub.add_listener(PresenceListener(writemessage))                   # set presence listener
 
     o_pubnub.subscribe().channels("general").with_presence().execute()      # subscribe to the main channel
-    o_pubnub._channel_name = "general"                                      # we create a custom variable to keep 
-                                                                            #a trace of the channel subscribed 
+    o_pubnub._channel_name = "general"                                      # we create a custom variable to keep
+                                                                            #a trace of the channel subscribed
                                                                             # (in order to switch channel[not availible now])
     
     #### the send message screen

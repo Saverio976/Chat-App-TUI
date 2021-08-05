@@ -1,6 +1,5 @@
-"""
-file to update the directory (download from github)
-"""
+"""file to update the directory (download from github)"""
+
 import sys
 import requests
 from shutil import unpack_archive, rmtree
@@ -18,15 +17,12 @@ def update():
     with open(name, "wb") as fd:
         for chunk in r.iter_content(chunk_size=128):
             fd.write(chunk)
-    try:
-        rmtree("../Chat-App-TUI-main", ignore_errors=True)
-    except:
-        pass
+
+    rmtree("../Chat-App-TUI-main", ignore_errors=True)
+    
     unpack_archive(name, "..", "zip")
-    try:
-        rmtree(name, ignore_errors=True)
-    except:
-        pass
+    
+    rmtree(name, ignore_errors=True)
     print("Up To Date")
     sys.exit()
 

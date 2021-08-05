@@ -1,19 +1,18 @@
-"""
-file with only PresenceListener class
-"""
+"""file with only PresenceListener class"""
+
 # PubNub related
 from pubnub.callbacks import SubscribeCallback
 
 class PresenceListener(SubscribeCallback):
-    """
-    goal :
-        listen presence event
-    arg :
-        writemessage : WriteMessage object (from assets/myclass/writteMessage.py)
-    return :
-        PresenceListener object
-    """
     def __init__(self, writemessage):
+        """
+        goal :
+            listen presence event
+        arg :
+            writemessage : WriteMessage object (from assets/myclass/writteMessage.py)
+        return :
+            PresenceListener object
+        """
         self._writeMessage = writemessage
 
     def presence(self, _, event):

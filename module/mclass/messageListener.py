@@ -1,19 +1,18 @@
-"""
-file with only MessageListener class
-"""
+"""file with only MessageListener class"""
+
 # PubNub related
 from pubnub.callbacks import SubscribeCallback
 
 class MessageListener(SubscribeCallback):
-    """
-    goal :
-        listen all message send
-    arg :
-        writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
-    return :
-        MessageListener class
-    """
     def __init__(self, writemessage):
+        """
+        goal :
+            listen all message send
+        arg :
+            writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
+        return :
+            MessageListener class
+        """
         self._writeMessage = writemessage
 
     def message(self, _, msg):

@@ -12,7 +12,7 @@ a personal terminal chat app to improve my python skill
 
 1) on terminal/cmd
 ```shell
-git clone https://github.com/Saverio976/Chat-App-TUI.git
+git clone https://github.com/Saverio976/Chat-App-TUI.git Chat-App-TUI-main
 ```
 
 2) on a browser
