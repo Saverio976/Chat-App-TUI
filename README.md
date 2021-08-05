@@ -4,6 +4,8 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/aad0f93f865040beb83aaf1f5015e2bc)](https://www.codacy.com/gh/Saverio976/Chat-App-TUI/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Saverio976/Chat-App-TUI&amp;utm_campaign=Badge_Grade)
+
 a personal terminal chat app to improve my python skill
 
 ![chat-app-TUI](/assets/image/chat_app_tui.png "chat-app-TUI")
