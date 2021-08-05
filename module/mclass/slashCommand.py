@@ -22,18 +22,22 @@ class SlashCommand:
         self._writeMessage = writemessage
         self._o_pubnub = o_pubnub
         self._command = {
-            "help" : ["help" ,self.help, "affiche les commandes disponibles + descriptions"],
-            "fin" : ["fin", self.fin, "ferme la session et se deconnecte"],
-            "here" : ["here", self.here, "envoi un message prévenant votre présence"],
-            "set_cipher" : ["set_cipher [key]", self.set_cipher, "rajouter un chifrement gràce à cette clefs; si pas de clefs, enlève le chiffrement"],
-            "ping" : ["ping [message]", self.ping, "envoi le message avec la couleur jaune"],
-            "whohere" : ["whohere", self.whohere, "affiche les personnes présentes"],
-            "up" : ["up [nb]", self.upPad, "aller vers le haut de nb ligne"],
-            "down" : ["down [nb]", self.downPad, "aller vers le bas de nb ligne"],
-            "history" : ["history <True/False>", self.set_historyfile_traceback, "Si True : met chaque message envoyé dans un fichier; si False : desactive"],
+            "help" : ["help", self.help, "affiche toutes les commandes"],
+            "help_" : ["help <commande>" ,self.help, "affiche la description de cette commande"],
+            "exit" : ["exit", self.exit, "ferme l'appli"],
+            "whohere" : ["whohere", self.whohere, "affiche tous les membres connecté sur se salon"],
+            "set_cipher" : ["set_cipher", self.set_cipher, "desactive les messages codé"],
+            "set_cipher_" : ["set_cipher <motClef", self.set_cipher, "active les messages codé avec cette clefs de chifrement"],
+            "ping" : ["ping <message a envoyer >", self.ping, "envoi un message en surbrilliance"],
+            "up" : ["up", self.upPad, "sroll vers le haut d'un message"],
+            "up_" : ["up <nombre>", self.upPad, "scroll vers le haut du nombre de message"],
+            "down" : ["down", self.downPad, "sroll vers le bas d'un message"],
+            "down_" : ["down <nombre>", self.downPad, "scroll vers le bas du nombre de message"],
+            "history" : ["history True", self.set_historyfile_traceback, "enregistre dans un fichier chaque message reçu"],
+            "history" : ["history False", self.set_historyfile_traceback, "desactive l'enregistrement"],
             #"switch_channel" : ["switch_channel <channel_name>", self.change_channel, "se connecte à un autre channel"],
-            "send_file" : ["send_file <chemin_absolu>", self.send_file, "envoi un fichier pour que d'autres puissent l'avoir"],
-            "download_file" : ["download_file <fileID> <fileNAME>", self.download_file, "télécharge un fichier en donnant son id et son nom"]
+            "send_file" : ["send_file <chemin_absolu_du_fichier>", self.send_file, "envoi un fichier dans le tchat"],
+            "download_file" : ["download_file <ID du fichier> <nom du fichier>", self.download_file, "telecharge un fichier envoyé dans le tchat"]
         }
 
     def run_command(self, message):
