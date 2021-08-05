@@ -1,4 +1,4 @@
-"""file with only feditwin function"""
+"""File with only feditwin function."""
 
 from curses import newwin
 from curses.textpad import Textbox
@@ -10,12 +10,14 @@ def feditwin(editwin_loc):
     Parameters
     ----------
     editwin_loc: list
-        the edit window localisation
-    
+        the edit window localisation.
+
     Returns
     -------
     :class:curses._CursesWindow
+        The edit window.
     :class:curses.Textbox
+        The textbox to write text in.
     """
     n_line = editwin_loc[2] - editwin_loc[0] or 1
     n_col = editwin_loc[3] - editwin_loc[1]

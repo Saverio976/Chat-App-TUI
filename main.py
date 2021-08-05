@@ -64,7 +64,7 @@ def main(stdscr):
     o_pubnub._channel_name = "general"                                      # we create a custom variable to keep
                                                                             #a trace of the channel subscribed
                                                                             # (in order to switch channel[not availible now])
-    
+
     #### the send message screen
     commandSlash_handler = SlashCommand(writemessage, o_pubnub)             # SlashCommand object from assets/myclass/slashCommand.py
 
