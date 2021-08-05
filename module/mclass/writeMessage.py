@@ -1,21 +1,30 @@
-"""file with only WriteMessage class"""
+"""File with only WriteMessage class."""
 
 import curses
 
 class WriteMessage:
     def __init__(self, history_file=False):
         """
-        goal :
-            write data to the pad
-        arg :
-            n_line : number of line of the pad
-            n_col : number of column of the pad
-            uly : upper left y
-            ulx : upper lef x
-            lry : lower right y
-            lrx : lower right x
-        return :
-            WriteMessage object
+        Write data to the pad.
+
+        Parameters
+        ----------
+        n_line: int
+            number of line of the pad
+        n_col: int 
+            number of column of the pad
+        uly: int
+            upper left y
+        ulx: int
+            upper lef x
+        lry: int
+            lower right y
+        lrx: int
+            lower right x
+        
+        Returns
+        -------
+        :class:WriteMessage
         """
         curses.start_color()
         if curses.has_colors(): # pylint: disable=no-member
@@ -126,7 +135,7 @@ class WriteMessage:
             else:
                 self._pad.addstr(self._counter,0, msg)
             self._counter += 1; self._y += 1
-        
+
         self.pad_refresh()
         if history:
             self.add_to_history((self.write_signal_message, *args))

@@ -5,18 +5,19 @@ from module.function.sanitizeStr import sanitizeStr # pylint: disable=import-err
 
 class SlashCommand:
     def __init__(self, writemessage, o_pubnub):
-        """Have all command in a simple class.
-        
+        """
+        Have all command in a simple class.
+
         Parameters
         ----------
         writemessage: :class:WriteMessage
             (from assets/myclass/writeMessage.py)
         o_pubnub: :class:pubnub.PubNub
             (init in assets/myfunc/initPubNub.py)
-        
+
         Returns
         -------
-        :class:SlashCommand
+        :class:SlashCommand.
         """
         self._writeMessage = writemessage
         self._o_pubnub = o_pubnub
@@ -37,13 +38,18 @@ class SlashCommand:
 
     def run_command(self, message):
         """
-        goal :
-            the main entry for this class and run command
-        arg :
-            message : the message "send"
-        return :
-            True to stay connected
-            False to disconnect
+        The main entry for this class and run command.
+
+        Parameters
+        ----------
+        message: str
+            the message "send".
+
+        Returns
+        -------
+        bool:
+            True to stay connected.
+            False to disconnect.
         """
         command = message.split()[0][1:] # we remove the "/"
         arg = " ".join(message.split()[1:]) # we remove the "/" + command
@@ -57,12 +63,19 @@ class SlashCommand:
 
     def help(self, arg):
         """
-        goal :
-            show all command availible
-        arg :
-            arg : arg
-        return :
-            True # stay_connected will stay True
+        Show all command availible.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            If arg != "" it will send the explanation for that command.
+            Else it will send a list of commands.
+        
+        Return
+        ------
+        bool
+            True.
         """
         msg1 = "Les éléments entre < > sont des informations indispensables"
         msg2 = "Les éléments entre [ ] sont des éléments optionels"
@@ -76,40 +89,35 @@ class SlashCommand:
             self._writeMessage.write_system_message(x)
         return True
 
-    def fin(self, _):
+    def exit(self, _):
         """
-        goal :
-            disconnect from channels
-        arg :
-            _ : arg
-        return :
-            False # stay_connected will become False
+        Disconnect from channels and propagate exit app.
+        
+        Return
+        ------
+        bool
+            False
         """
         channel = self._o_pubnub._channel_name
         self._o_pubnub.unsubscribe().channels(channel)
         self._writeMessage.write_system_message("Au revoir")
         return False
 
-    def here(self, _):
-        """
-        goal :
-            shwo a little message to say you are here
-        arg :
-            _ : arg
-        return :
-            True # stay_connected will stay True
-        """
-        self._o_pubnub.publish().channel("général").message("/here").sync()
-        return True
-
     def set_cipher(self, arg):
         """
-        goal :
-            set a cipher key to encrypt message and let other don't understand
-        arg :
-            arg : arg : the cypher key
-        return
-            True # stay_connected will stay True
+        Set a cipher key to encrypt message and let other don't understand.
+        
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            If arg != "" it will set the cipher key.
+            Else it will disable the cipher.
+
+        Returns
+        -------
+        bool
+            True.
         """
         if arg == "":
             self._o_pubnub.config.cipher_key = None
@@ -121,12 +129,18 @@ class SlashCommand:
 
     def ping(self, arg):
         """
-        goal :
-            write arg in white on the channel
-        arg :
-            arg : arg : the message to send
-        return :
-            True # stay_connected will stay True
+        Write arg in white on the channel.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            The message to send.
+
+        Returns
+        -------
+        bool
+            True.
         """
         msg = "/ping " + arg
         self._o_pubnub.publish().channel("général").message(msg).sync()
@@ -134,12 +148,12 @@ class SlashCommand:
 
     def whohere(self, _):
         """
-        goal :
-            show all present member
-        arg :
-            _ : arg
-        return :
-            True # stay_connected will stay True
+        Show all present member.
+
+        Returns
+        -------
+        bool
+            True.
         """
         def here_now_callback(result, status):
             if status.is_error():
@@ -159,12 +173,18 @@ class SlashCommand:
 
     def upPad(self, arg):
         """
-        goal :
-            scroll to the top of the message history
-        arg :
-            arg : nb line to go up [if no, = 1]
-        return :
-            True # stay_connected will stay True
+        Scroll to the top of the message history.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            If arg is not provided or not a digit it will be 1 by default.
+
+        Returns
+        -------
+        bool
+            True.
         """
         if arg.isdigit():
             arg = int(arg)
@@ -175,12 +195,18 @@ class SlashCommand:
 
     def downPad(self, arg):
         """
-        goal :
-            scroll to the bottom of the message history
-        arg :
-            arg : nb line to go down [if no, = 1]
-        return :
-            True # stay_connected will stay True
+        Scroll to the bottom of the message history.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            If arg is not provided or not a digit it will be 1 by default.
+
+        Returns
+        -------
+        bool
+            True.
         """
         if arg.isdigit():
             arg = int(arg)
@@ -191,14 +217,19 @@ class SlashCommand:
 
     def set_historyfile_traceback(self, arg):
         """
-        goal :
-            message send by user will be append to the assets/document/data/history.txt
-            if arg is True
-            if False : no file history traceback
-        arg :
-            arg : arg : True/False
-        return :
-            True # stay_connected will stay True
+        Set record history or not.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            If arg == "True" : record
+            If arg == "False" : unrecord
+
+        Returns
+        -------
+        bool
+            True.
         """
         if arg not in ["True", "False"]:
             return self.help(arg)
@@ -210,15 +241,15 @@ class SlashCommand:
             self._writeMessage.write_system_message("Traceback History File end !")
         return True
 
-    def change_channel(self, arg):
-        """
+    """def change_channel(self, arg):
+        """"""
         goal :
             switch channel
         arg :
             arg : channel name
         return :
             True # stay_connected will stay True
-        """
+        """"""
         if arg == "":
             return self.help(arg)
         channel = self._o_pubnub._channel_name
@@ -227,15 +258,22 @@ class SlashCommand:
         self._o_pubnub._channel_name = arg
         self._writeMessage.write_system_message(f"switch to {arg} channel")
         return True
+    """
 
     def send_file(self, arg):
         """
-        goal :
-            send a file in the chat
-        arg :
-            arg : the path of the file
-        return :
-            True # stay_connected will stay True
+        Send a file in the chat.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            the absolute path of the file
+
+        Returns
+        -------
+        bool
+            True.
         """
         if arg == "":
             return self.help(arg)
@@ -262,13 +300,19 @@ class SlashCommand:
 
     def download_file(self, arg):
         """
-        goal :
-            download a file publish on a channel
-        arg :
-            arg :   first the fileID
-                    seconde the fileNAME
-        return :
-            True # stay_connected will stay True
+        Download a file published on a channel.
+
+        Parameters
+        ----------
+        arg: str
+            Args parsed by self.run_command.
+            First element : file id.
+            Second element : file name.
+
+        Returns
+        -------
+        bool
+            True.
         """
         args = arg.split()
         if len(args) != 2:
