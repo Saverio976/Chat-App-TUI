@@ -92,7 +92,7 @@ class SlashCommand:
     def exit(self, _):
         """
         Disconnect from channels and propagate exit app.
-        
+
         Return
         ------
         bool

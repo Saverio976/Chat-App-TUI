@@ -5,7 +5,7 @@ import requests
 from shutil import unpack_archive, rmtree
 
 def update():
-    """update all files"""
+    """Update all files."""
     repository_download = "https://github.com/Saverio976/Chat-App-TUI/archive/main.zip"
     name = "../Chat-App-TUI-main.zip"
     r = requests.get(repository_download, stream=True)
