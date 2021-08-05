@@ -212,7 +212,7 @@ class WriteMessage:
     def add_to_history(self, data):
         """
         Get a trace of the last message.
-        
+
         Parameters
         ----------
         data: Any

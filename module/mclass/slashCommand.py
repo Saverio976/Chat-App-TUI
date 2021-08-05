@@ -71,7 +71,7 @@ class SlashCommand:
             Args parsed by self.run_command.
             If arg != "" it will send the explanation for that command.
             Else it will send a list of commands.
-        
+
         Return
         ------
         bool

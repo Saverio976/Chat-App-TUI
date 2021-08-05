@@ -1,4 +1,4 @@
-"""file with only MessageListener class"""
+"""File with only MessageListener class."""
 
 # PubNub related
 from pubnub.callbacks import SubscribeCallback
@@ -6,12 +6,16 @@ from pubnub.callbacks import SubscribeCallback
 class MessageListener(SubscribeCallback):
     def __init__(self, writemessage):
         """
-        goal :
-            listen all message send
-        arg :
-            writemessage : WriteMessage object (from assets/myclass/writeMessage.py)
-        return :
-            MessageListener class
+        Listen all message send.
+
+        Parameters
+        ----------
+        writemessage: :class:WriteMessage
+            (from module/mclass/writeMessage.py)
+
+        Returns
+        -------
+        :class:MessageListener
         """
         self._writeMessage = writemessage
 
@@ -19,10 +23,7 @@ class MessageListener(SubscribeCallback):
         content = msg.message
         author = f"{msg.publisher[:-10]}#{msg.publisher[-10:]}"
 
-        if content == "/here":
-            self._writeMessage.write_system_message(f"{author} est dans le channel")
-            return None
-        elif content == "[+inspect+]":
+        if content == "[+inspect+]":
             self._writeMessage.write_signal_message(author, "FAIT SON INSPECTEUR")
             return None
         elif content.startswith("/ping "):

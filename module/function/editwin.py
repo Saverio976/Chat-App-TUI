@@ -5,15 +5,17 @@ from curses.textpad import Textbox
 
 def feditwin(editwin_loc):
     """
-    goal :
-        create a window to write message in
-    arg :
-        n_line : number of line
-        n_col : number of column
-        y : position y of upper-left corner
-        x : position x of upper-left corner
-    return :
-        box object object
+    Create a window to write message in.
+
+    Parameters
+    ----------
+    editwin_loc: list
+        the edit window localisation
+    
+    Returns
+    -------
+    :class:curses._CursesWindow
+    :class:curses.Textbox
     """
     n_line = editwin_loc[2] - editwin_loc[0] or 1
     n_col = editwin_loc[3] - editwin_loc[1]

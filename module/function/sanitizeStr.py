@@ -1,13 +1,18 @@
-"""file with only sanitizeStr function"""
+"""File with only sanitizeStr function."""
 
 def sanitizeStr(data):
     """
-    goal :
-        escape all char that will trigger an error
-    arg :
-        data : the str to sanitize
-    return :
-        the sanitize data
+    Escape all char that will trigger an error.
+
+    Parameters
+    ----------
+    data: str
+        the str to sanitize
+
+    Returns
+    -------
+    str
+        The sanitized data.
     """
     data = " ".join(data.split())
     new_msg = []

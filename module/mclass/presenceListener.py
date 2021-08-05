@@ -1,4 +1,4 @@
-"""file with only PresenceListener class"""
+"""File with only PresenceListener class."""
 
 # PubNub related
 from pubnub.callbacks import SubscribeCallback

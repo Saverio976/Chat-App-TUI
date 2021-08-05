@@ -14,7 +14,7 @@ def update():
             fd.write(chunk)
 
     rmtree("../Chat-App-TUI-main", ignore_errors=True)
-    
+
     unpack_archive(name, "..", "zip")
 
     rmtree(name, ignore_errors=True)

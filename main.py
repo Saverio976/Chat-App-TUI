@@ -56,7 +56,7 @@ def main(stdscr):
     edit_stdscr_window(stdscr)                                              # header
     writemessage.write_start_up_message(f"{o_pubnub.uuid}")                 # welcome message
     draw_rectangle(stdscr, rectangle_loc, "message :")                      # draw rectangle (from assets/myfunc/draw_rectangle.py)
-    
+
     o_pubnub.add_listener(MessageListener(writemessage))                    # set message listener
     o_pubnub.add_listener(PresenceListener(writemessage))                   # set presence listener
 
