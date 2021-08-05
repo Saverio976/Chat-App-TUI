@@ -11,7 +11,7 @@ class WriteMessage:
         ----------
         n_line: int
             number of line of the pad
-        n_col: int 
+        n_col: int
             number of column of the pad
         uly: int
             upper left y
@@ -21,7 +21,7 @@ class WriteMessage:
             lower right y
         lrx: int
             lower right x
-        
+
         Returns
         -------
         :class:WriteMessage

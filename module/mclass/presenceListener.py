@@ -6,12 +6,16 @@ from pubnub.callbacks import SubscribeCallback
 class PresenceListener(SubscribeCallback):
     def __init__(self, writemessage):
         """
-        goal :
-            listen presence event
-        arg :
-            writemessage : WriteMessage object (from assets/myclass/writteMessage.py)
-        return :
-            PresenceListener object
+        Listen presence event
+
+        Parameters
+        ----------
+        writemessage: :class:WriteMessage
+            (from module/mclass/writteMessage.py)
+
+        Returns
+        -------
+        :class:PresenceListener
         """
         self._writeMessage = writemessage
 
