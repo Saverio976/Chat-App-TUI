@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 ### package
 import os
 import requests                                                             # check if you are connected to internet
